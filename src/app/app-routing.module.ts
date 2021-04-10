@@ -14,15 +14,8 @@ const routes: Routes = [
   { path: 'page1', component: Page1Component },
   { path: 'page2', component: Page2Component },
   { path: 'dashboard', component: DashboardComponent },
-  {
-    path: 'utilities', children: [
-      { path: 'color', component: ColorComponent },
-      { path: 'color/:type', component: ColorComponent },
-      { path: 'border', component: BorderComponent },
-      { path: 'animation', component: AnimationComponent },
-      { path: 'other', component: OtherComponent },
-    ]
-  },
+  { path: 'components', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule) },
+  { path: 'utilities', loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule) },
   { path: '**', pathMatch: 'full', component: NotFoundComponent }
 ];
 
