@@ -27,6 +27,12 @@ export class ColorComponent implements OnInit {
   }
 
   plusOne() {
-    this.router.navigate(['/utilities/color/', ++this.type]);
+    this.router.navigate(['../', ++this.type], {
+      relativeTo: this.route,
+      queryParamsHandling: 'merge',
+      queryParams: {
+        page: 1,
+      }
+    });
   }
 }
