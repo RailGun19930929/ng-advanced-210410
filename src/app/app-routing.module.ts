@@ -4,10 +4,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
-import { AnimationComponent } from './utilities/animation/animation.component';
-import { BorderComponent } from './utilities/border/border.component';
-import { ColorComponent } from './utilities/color/color.component';
-import { OtherComponent } from './utilities/other/other.component';
 
 const routes: Routes = [
   // { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
