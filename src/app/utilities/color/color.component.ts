@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './color.component.html',
@@ -6,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColorComponent implements OnInit {
 
-  constructor() { }
+  type = 0;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
+
 
   ngOnInit(): void {
+    // 1
+    this.type = +this.route.snapshot.paramMap.get('type');
+
+    // 2
+    this.route.paramMap.subscribe((params) => {
+      this.type = +params.get('type');
+    });
   }
 
+  plusOne() {
+    this.router.navigate(['/utilities/color/', ++this.type]);
+  }
 }
