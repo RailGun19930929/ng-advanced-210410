@@ -64,6 +64,10 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
     })
   }
 
+  deleteExtra(index: number) {
+    this.getFormArray('extra').removeAt(index);
+  }
+
   ngOnDestroy(): void {
     document.body.className = this.originClass;
   }
