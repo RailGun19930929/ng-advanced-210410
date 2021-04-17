@@ -1,5 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { isNationalIdentificationNumberValid } from 'taiwan-id-validator2';
+
+function validateTwid(c: FormControl): ValidationErrors | null {
+  if (!c.value) {
+    return null;
+  }
+  const result = isNationalIdentificationNumberValid(c.value);
+  if (result) {
+    return null
+  }
+  return {
+    twid: true
+  }
+}
 
 @Component({
   templateUrl: './login-reactive.component.html',
@@ -14,15 +28,18 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
     extra: [
       {
         name: '111',
-        tel: '222'
+        tel: '222',
+        twid: '',
       },
       {
         name: '333',
-        tel: '444'
+        tel: '444',
+        twid: '',
       },
       {
         name: '555',
-        tel: '666'
+        tel: '666',
+        twid: '',
       }
     ]
   }
@@ -75,6 +92,14 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
 
   }
 
+  getControl(validators?: ValidatorFn[]) {
+    const ctl = this.fb.control('');
+    if (validators) {
+      ctl.setValidators(validators);
+    }
+    return ctl;
+  }
+
   resetForm() {
     this.getFormArray('extra').clear();
     for (const item of this.data.extra) {
@@ -85,8 +110,9 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
 
   makeExtra() {
     return this.fb.group({
-      name: '',
-      tel: '',
+      name: this.getControl(),
+      tel: this.getControl(),
+      twid: this.getControl([validateTwid]),
     })
   }
 
