@@ -62,6 +62,21 @@ form.value = {{ form.value | json }}
                         Me</label>
                     </div>
                   </div>
+                  <section formArrayName="extra">
+                    <section *ngFor="let item of getFormArray('extra').controls; let i=index" [formGroupName]="i">
+                      <div class="form-group">
+                        <input type="text" class="form-control form-control-user" placeholder="請輸入姓名"
+                          formControlName="name">
+
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" class="form-control form-control-user" placeholder="請輸入電話"
+                          formControlName="tel">
+                      </div>
+                    </section>
+                    <button type="button" (click)="addFormArray('extra')">ADD</button>
+                  </section>
                   <a href="index.html" class="btn btn-primary btn-user btn-block">
                     Login
                   </a>

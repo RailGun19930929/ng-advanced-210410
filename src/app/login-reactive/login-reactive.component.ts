@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './login-reactive.component.html',
@@ -36,7 +36,7 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
           updateOn: 'blur',
         }
       ),
-      password:  this.fb.control(
+      password: this.fb.control(
         '123ABCabc',
         {
           validators: [
@@ -47,12 +47,35 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
           updateOn: 'change',
         }
       ),
-      isRememberMe: true
+      isRememberMe: true,
+      extra: this.fb.array(
+        [
+          this.makeExtra(),
+          this.makeExtra(),
+        ]
+      ),
     });
+  }
+
+  makeExtra() {
+    return this.fb.group({
+      name: '',
+      tel: '',
+    })
   }
 
   ngOnDestroy(): void {
     document.body.className = this.originClass;
+  }
+
+  getFormArray(name: string) {
+    return this.form.get(name) as FormArray
+  }
+
+  addFormArray(name) {
+    (this.form.get(name) as FormArray).push(
+      this.makeExtra(),
+    )
   }
 
   onSubmit(form: FormGroup) {
