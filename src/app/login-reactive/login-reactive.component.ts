@@ -8,9 +8,23 @@ import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/
 export class LoginReactiveComponent implements OnInit, OnDestroy {
 
   data: any = {
-    email: '',
-    password: '',
+    email: 'user2@example.com',
+    password: '123ABCabc',
     isRememberMe: true,
+    extra: [
+      {
+        name: '111',
+        tel: '222'
+      },
+      {
+        name: '333',
+        tel: '444'
+      },
+      {
+        name: '555',
+        tel: '666'
+      }
+    ]
   }
 
   form: FormGroup;
@@ -49,12 +63,24 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
       ),
       isRememberMe: true,
       extra: this.fb.array(
-        [
-          this.makeExtra(),
-          this.makeExtra(),
-        ]
+        []
       ),
     });
+
+    for (const item of this.data.extra) {
+      this.getFormArray('extra').push(this.makeExtra());
+    }
+
+    this.form.setValue(this.data);
+
+  }
+
+  resetForm() {
+    this.getFormArray('extra').clear();
+    for (const item of this.data.extra) {
+      this.getFormArray('extra').push(this.makeExtra());
+    }
+    this.form.reset(this.data);
   }
 
   makeExtra() {

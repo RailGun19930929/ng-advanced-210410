@@ -74,13 +74,14 @@ form.value = {{ form.value | json }}
                         <input type="text" class="form-control form-control-user" placeholder="請輸入電話"
                           formControlName="tel">
                       </div>
-                      <button type="button" (click)="deleteExtra(i)">DELETE</button>
+                      <button type="button" (click)="getFormArray('extra').removeAt(i)">DELETE</button>
                     </section>
                     <button type="button" (click)="addFormArray('extra')">ADD</button>
                   </section>
                   <a href="index.html" class="btn btn-primary btn-user btn-block">
                     Login
                   </a>
+                  <button type="button" (click)="resetForm()" class="btn btn-google btn-user btn-block">RESET</button>
                   <hr>
                   <a href="index.html" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Login with Google
