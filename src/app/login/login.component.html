@@ -17,25 +17,33 @@
                 </div>
                 <pre>{{ data | json }}</pre>
                 <pre>{{ form.value | json }}</pre>
-                <form class="user" #form="ngForm">
+                <form class="user" #form="ngForm" [class.was-validated]="form.dirty && form.invalid">
                   <div class="form-group">
                     <input type="email" class="form-control form-control-user" aria-describedby="emailHelp"
-                      placeholder="Enter Email Address..." [(ngModel)]="data.email" name="email" #mEmail="ngModel">
-                    <pre>value = {{ mEmail.value | json }}</pre>
-                    <pre>pristine = {{ mEmail.pristine | json }}</pre>
-                    <pre>dirty = {{ mEmail.dirty | json }}</pre>
-                    <pre>touched = {{ mEmail.touched | json }}</pre>
-                    <pre>untouched = {{ mEmail.untouched | json }}</pre>
-                    <pre>valid = {{ mEmail.valid | json }}</pre>
-                    <pre>invalid = {{ mEmail.invalid | json }}</pre>
-                    <pre>enabled = {{ mEmail.enabled | json }}</pre>
-                    <pre>disabled = {{ mEmail.disabled | json }}</pre>
-                    <pre>status = {{ mEmail.status | json }}</pre>
-                    <pre>errors = {{ mEmail.errors | json }}</pre>
+                      placeholder="Enter Email Address..." [(ngModel)]="data.email" name="email" #mEmail="ngModel"
+                      required email>
+                    <pre>value = {{ mEmail.value | json }}
+                    pristine = {{ mEmail.pristine | json }}
+                    dirty = {{ mEmail.dirty | json }}
+                    touched = {{ mEmail.touched | json }}
+                    untouched = {{ mEmail.untouched | json }}
+                    valid = {{ mEmail.valid | json }}
+                    invalid = {{ mEmail.invalid | json }}
+                    enabled = {{ mEmail.enabled | json }}
+                    disabled = {{ mEmail.disabled | json }}
+                    status = {{ mEmail.status | json }}
+                    errors = {{ mEmail.errors | json }}</pre>
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-user" placeholder="Password"
-                      [(ngModel)]="data.password" name="password" #mPassword="ngModel">
+                      [(ngModel)]="data.password" name="password" #mPassword="ngModel" required minlength="3"
+                      maxlength="32" pattern="^(?=.*[a-z])(?=.*[a-z])(?=.*\d).{3,32}$">
+                    <div class="invalid-feedback" *ngIf="mPassword.errors?.required">請輸入密碼</div>
+                    <div class="invalid-feedback" *ngIf="mPassword.errors?.minlength">請輸入至少
+                      {{mPassword.errors?.minlength.requiredLength}} 個字元</div>
+                    <div class="invalid-feedback" *ngIf="mPassword.errors?.pattern">請符合格式</div>
+                    <pre>mPassword.errors = {{mPassword.errors | json}}
+                      </pre>
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
@@ -45,9 +53,9 @@
                         Me</label>
                     </div>
                   </div>
-                  <a href="index.html" class="btn btn-primary btn-user btn-block">
+                  <button type="submit" class="btn btn-primary btn-user btn-block">
                     Login
-                  </a>
+                  </button>
                   <hr>
                   <a href="index.html" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Login with Google
