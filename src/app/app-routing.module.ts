@@ -1,3 +1,4 @@
+import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
@@ -21,6 +22,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'login2', component: LoginReactiveComponent },
 
   { path: '**', pathMatch: 'full', component: NotFoundComponent }
 ];

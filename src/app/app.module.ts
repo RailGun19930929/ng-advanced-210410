@@ -14,6 +14,7 @@ import { OtherComponent } from './utilities/other/other.component';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginReactiveComponent } from './login-reactive/login-reactive.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AnimationComponent,
     OtherComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    LoginReactiveComponent
   ],
   imports: [
     BrowserModule,
