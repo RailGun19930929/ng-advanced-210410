@@ -26,21 +26,27 @@ export class LoginReactiveComponent implements OnInit, OnDestroy {
     document.body.className = 'bg-gradient-primary';
 
     this.form = this.fb.group({
-      email: [
+      email: this.fb.control(
         'user2@example.com',
-        [
-          Validators.required,
-          Validators.email,
-        ]
-      ],
-      password: [
+        {
+          validators: [
+            Validators.required,
+            Validators.email,
+          ],
+          updateOn: 'blur',
+        }
+      ),
+      password:  this.fb.control(
         '123ABCabc',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(32),
-        ]
-      ],
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(32),
+          ],
+          updateOn: 'change',
+        }
+      ),
       isRememberMe: true
     });
   }

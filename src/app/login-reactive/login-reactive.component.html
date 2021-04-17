@@ -16,7 +16,7 @@
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
                 <pre>data = {{data | json}}
-                 form.value = {{ form.value | json }}
+form.value = {{ form.value | json }}
 
                 </pre>
                 <form class="user" [formGroup]="form" (ngSubmit)="onSubmit(form)"
