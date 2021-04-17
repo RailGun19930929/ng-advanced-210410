@@ -49,11 +49,24 @@
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
                       <input type="checkbox" class="custom-control-input" [ngModel]="data.isRememberMe"
-                        name="isRememberMe" #mIsRememberMe="ngModel">
+                        name="isRememberMe" #mIsRememberMe="ngModel" id="customCheck">
                       <label class="custom-control-label" for="customCheck">Remember
                         Me</label>
                     </div>
                   </div>
+                  <section ngModelGroup="extra" #mExtra="ngModelGroup">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" placeholder="請輸入姓名" ngModel name="name">
+
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" placeholder="請輸入電話" ngModel name="tel">
+                    </div>
+
+                  </section>
+
+
                   <button type="submit" class="btn btn-primary btn-user btn-block">
                     Login
                   </button>
