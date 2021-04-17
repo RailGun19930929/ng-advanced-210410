@@ -15,18 +15,32 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-                <form class="user">
+                <pre>{{ data | json }}</pre>
+                <pre>{{ form.value | json }}</pre>
+                <form class="user" #form="ngForm">
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                      aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                    <input type="email" class="form-control form-control-user" aria-describedby="emailHelp"
+                      placeholder="Enter Email Address..." [(ngModel)]="data.email" name="email" #mEmail="ngModel">
+                    <pre>value = {{ mEmail.value | json }}</pre>
+                    <pre>pristine = {{ mEmail.pristine | json }}</pre>
+                    <pre>dirty = {{ mEmail.dirty | json }}</pre>
+                    <pre>touched = {{ mEmail.touched | json }}</pre>
+                    <pre>untouched = {{ mEmail.untouched | json }}</pre>
+                    <pre>valid = {{ mEmail.valid | json }}</pre>
+                    <pre>invalid = {{ mEmail.invalid | json }}</pre>
+                    <pre>enabled = {{ mEmail.enabled | json }}</pre>
+                    <pre>disabled = {{ mEmail.disabled | json }}</pre>
+                    <pre>status = {{ mEmail.status | json }}</pre>
+                    <pre>errors = {{ mEmail.errors | json }}</pre>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                      placeholder="Password">
+                    <input type="password" class="form-control form-control-user" placeholder="Password"
+                      [(ngModel)]="data.password" name="password" #mPassword="ngModel">
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
-                      <input type="checkbox" class="custom-control-input" id="customCheck">
+                      <input type="checkbox" class="custom-control-input" [(ngModel)]="data.isRememberMe"
+                        name="isRememberMe" #mIsRememberMe="ngModel">
                       <label class="custom-control-label" for="customCheck">Remember
                         Me</label>
                     </div>
